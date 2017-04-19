@@ -14,7 +14,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    { provide: "windowObject", useValue: window}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
