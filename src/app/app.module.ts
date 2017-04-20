@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MdInputModule,
-  MdButtonModule,
+  MdButtonModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';

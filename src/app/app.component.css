@@ -1,0 +1,38 @@
+:host {
+  padding: 16px;
+}
+
+p {
+  margin: 4px 0;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 0 4px 0;
+}
+
+.results-item {
+  margin: 8px;
+  padding: 4px;
+  border: 1px solid grey;
+}
+
+.results-item p {
+  margin: 4px 0;
+}
+
+md-input-container {
+  display: block;
+}
+
+button {
+  display: block;
+  margin-left: auto;
+}
+
+form {
+  /*text-align: center;*/
+  margin: 0 auto;
+  max-width: 500px;
+}

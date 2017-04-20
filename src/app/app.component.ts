@@ -19,10 +19,7 @@ export class AppComponent implements OnInit {
     private _googlePlacesService: GooglePlacesService,
     private _formBuilder: FormBuilder,
     private _changeDetectorRef: ChangeDetectorRef
-  ) {
-    this.searchResults$.subscribe(val => console.log(val));
-    this.progress$.subscribe(val => console.log(val));
-  }
+  ) { }
 
   ngOnInit () {
     this.searchFormGroup = this._formBuilder.group({

@@ -1,3 +1,5 @@
+<h2>Real estate agent finder</h2>
+<p>Enter 2 valid addresses to find the closest real estate agents between the addresses.</p>
 <form [formGroup]="searchFormGroup" (ngSubmit)="onSearch(searchFormGroup)">
   <md-input-container>
     <input mdInput formControlName="addressOne" type="text" placeholder="Address 1">
@@ -9,11 +11,10 @@
 </form>
 <div>
   {{((progress$ | async) < 100) ? 'Searching for realators' : ''}}
-  {{(searchResults$ | async)?.length > 0}}
 </div>
-<md-list *ngIf="(searchResults$ | async)?.length > 0">
-  <md-list-item *ngFor="let result of (searchResults$ | async)">
+<div class="results" *ngIf="(searchResults$ | async)?.length > 0">
+  <div class="results-item" *ngFor="let result of (searchResults$ | async)">
     <p md-line>{{result.name}}</p>
     <p md-line>{{result.address}} </p>
-  </md-list-item>
-</md-list>
+  </div>
+</div>
