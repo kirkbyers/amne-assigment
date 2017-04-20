@@ -1,8 +1,6 @@
-import 'rxjs/add/observable/of';
-
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { GooglePlacesService } from './google-places.service';
 
@@ -13,14 +11,13 @@ import { GooglePlacesService } from './google-places.service';
 })
 export class AppComponent implements OnInit {
   searchFormGroup: FormGroup;
-  searchResults$: Observable<any[]>;
+  searchResults$ = new BehaviorSubject(null);
 
   constructor (
     private _googlePlacesService: GooglePlacesService,
     private _formBuilder: FormBuilder
   ) {
-    this.searchResults$ = Observable.of([])
-    this._googlePlacesService.getNearestFrom2('826 Greenpark Drive, Houston, TX', '4419 Blossom St, Houston, Tx').subscribe(val => console.log(val));
+    this.searchResults$.subscribe(val => console.log(val));
   }
 
   ngOnInit () {
@@ -31,8 +28,8 @@ export class AppComponent implements OnInit {
   }
 
   onSearch (updatedFormGroup: FormGroup) {
-    const formGroupValue = updatedFormGroup.value();
-    // this._googlePlacesService.findNearByAgent([formGroupValue.addressOne, formGroupValue.addressTwo])
-    //   .subscribe(val => console.log(val));
+    const formGroupValue = updatedFormGroup.value;
+    this._googlePlacesService.getNearestFrom2(formGroupValue.addressOne, formGroupValue.addressTwo)
+      .subscribe(result => this.searchResults$.next(result));
   }
 }

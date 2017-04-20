@@ -118,7 +118,6 @@ export class GooglePlacesService {
         const distanceMatrices = destLocationsAddressChunks.map(chunck => this.getDistanceMatrix(originLocations, chunck).filter(m => !!m));
         return Observable.combineLatest(distanceMatrices)
           .map(matrices => {
-            console.log(destLocationsChunks);
             const results = [];
             matrices.forEach((matrix, mIndex) => {
               matrix.destinationAddresses.forEach((address, aIndex) => {

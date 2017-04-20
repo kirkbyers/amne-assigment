@@ -1,8 +1,9 @@
-<form [formGroup]="searchFormGroup">
+<form [formGroup]="searchFormGroup" (ngSubmit)="onSearch(searchFormGroup)">
   <div>
-    <input type="text" placeholder="Address 1">
+    <input formControlName="addressOne" type="text" placeholder="Address 1">
   </div>
   <div>
-    <input type="text" placeholder="Address 2">
+    <input formControlName="addressTwo" type="text" placeholder="Address 2">
   </div>
+  <button type="submit">Search</button>
 </form>
