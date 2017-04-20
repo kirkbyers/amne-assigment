@@ -9,4 +9,11 @@
 </form>
 <div>
   {{((progress$ | async) < 100) ? 'Searching for realators' : ''}}
+  {{(searchResults$ | async)?.length > 0}}
 </div>
+<md-list *ngIf="(searchResults$ | async)?.length > 0">
+  <md-list-item *ngFor="let result of (searchResults$ | async)">
+    <p md-line>{{result.name}}</p>
+    <p md-line>{{result.address}} </p>
+  </md-list-item>
+</md-list>

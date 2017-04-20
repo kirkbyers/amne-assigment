@@ -6,7 +6,6 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MdInputModule,
   MdButtonModule,
-  MdProgressBarModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';

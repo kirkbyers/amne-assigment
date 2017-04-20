@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -8,7 +8,7 @@ import { GooglePlacesService } from './google-places.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class AppComponent implements OnInit {
   searchFormGroup: FormGroup;
@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
 
   constructor (
     private _googlePlacesService: GooglePlacesService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _changeDetectorRef: ChangeDetectorRef
   ) {
     this.searchResults$.subscribe(val => console.log(val));
     this.progress$.subscribe(val => console.log(val));
@@ -37,6 +38,8 @@ export class AppComponent implements OnInit {
       .subscribe(result => {
         this.progress$.next(100);
         this.searchResults$.next(result)
+        // Need to figure out why manual detection is needed
+        this._changeDetectorRef.detectChanges();
       });
   }
 }
