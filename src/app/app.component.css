@@ -22,8 +22,9 @@ h2 {
   margin: 4px 0;
 }
 
-md-input-container {
+.mat-input-container {
   display: block;
+  padding: 4px 0;
 }
 
 button {

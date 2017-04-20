@@ -10,7 +10,7 @@
   <button md-button type="submit">Search</button>
 </form>
 <div>
-  {{((progress$ | async) < 100) ? 'Searching for realators' : ''}}
+  {{((progress$ | async) < 100) ? 'Searching for realtors' : ''}}
 </div>
 <div class="results" *ngIf="(searchResults$ | async)?.length > 0">
   <div class="results-item" *ngFor="let result of (searchResults$ | async)">
