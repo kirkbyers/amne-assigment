@@ -25,7 +25,6 @@ import { GooglePlacesService } from './google-places.service';
     MdButtonModule
   ],
   providers: [
-    { provide: "windowObject", useValue: window},
     GooglePlacesService
   ],
   bootstrap: [AppComponent]

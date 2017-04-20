@@ -18,14 +18,12 @@ export class GooglePlacesService {
   private _destinationMatrixService;
   private _imperialUnits;
 
-  constructor(
-    @Inject('windowObject') window: any
-  ) {
-    this._googlePlaces = new window.google.maps.places.PlacesService(window.document.createElement('div'));
-    this._LatLang = window.google.maps.LatLng;
-    this._geocoder = new window.google.maps.Geocoder();
-    this._destinationMatrixService = new window.google.maps.DistanceMatrixService();
-    this._imperialUnits = window.google.maps.UnitSystem.IMPERIAL;
+  constructor () {
+    this._googlePlaces = new (<any>window).google.maps.places.PlacesService(window.document.createElement('div'));
+    this._LatLang = (<any>window).google.maps.LatLng;
+    this._geocoder = new (<any>window).google.maps.Geocoder();
+    this._destinationMatrixService = new (<any>window).google.maps.DistanceMatrixService();
+    this._imperialUnits = (<any>window).google.maps.UnitSystem.IMPERIAL;
   }
 
   findNearByAgent (inpLatLng) {
