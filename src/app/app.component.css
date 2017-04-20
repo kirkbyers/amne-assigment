@@ -12,6 +12,10 @@ h2 {
   margin: 0 0 4px 0;
 }
 
+.results {
+  padding-top: 8px;
+}
+
 .results-item {
   margin: 8px;
   padding: 4px;
@@ -29,7 +33,7 @@ h2 {
 
 button {
   display: block;
-  margin-left: auto;
+  margin: 4px 0 4px auto;
 }
 
 form {
