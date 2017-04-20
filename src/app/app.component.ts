@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { GooglePlacesService } from './google-places.service';
@@ -23,20 +23,22 @@ export class AppComponent implements OnInit {
 
   ngOnInit () {
     this.searchFormGroup = this._formBuilder.group({
-      addressOne: [''],
-      addressTwo: ['']
+      addressOne: ['', Validators.required],
+      addressTwo: ['', Validators.required]
     })
   }
 
   onSearch (updatedFormGroup: FormGroup) {
-    this.progress$.next(0);
-    const formGroupValue = updatedFormGroup.value;
-    this._googlePlacesService.getNearestFrom2(formGroupValue.addressOne, formGroupValue.addressTwo)
-      .subscribe(result => {
-        this.progress$.next(100);
-        this.searchResults$.next(result)
-        // Need to figure out why manual detection is needed
-        this._changeDetectorRef.detectChanges();
-      });
+    if (updatedFormGroup.valid) {
+      this.progress$.next(0);
+      const formGroupValue = updatedFormGroup.value;
+      this._googlePlacesService.getNearestFrom2(formGroupValue.addressOne, formGroupValue.addressTwo)
+        .subscribe(result => {
+          this.progress$.next(100);
+          this.searchResults$.next(result)
+          // TODO: Need to figure out why manual detection is needed
+          this._changeDetectorRef.detectChanges();
+        });
+    }
   }
 }

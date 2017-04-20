@@ -52,7 +52,7 @@ export class GooglePlacesService {
     const result = new BehaviorSubject(null);
     this._geocoder.geocode({
       address
-    }, res => {
+    }, (res, status) => {
       result.next(res[0]);
       result.complete();
     })
@@ -106,6 +106,7 @@ export class GooglePlacesService {
       .switchMap(({origins, nearByAgents}) => {
         const originLocations = origins.map(o => o.geometry.location);
         const destLocations = nearByAgents.map(a => a);
+        // Chunk destinations since google is capped at 25 per request
         const destLocationsChunks = [];
         const destLocationsAddressChunks = [];
         const chunckSize = 25;
@@ -121,10 +122,13 @@ export class GooglePlacesService {
             const results = [];
             matrices.forEach((matrix, mIndex) => {
               matrix.destinationAddresses.forEach((address, aIndex) => {
+                // Map result from chunk to original values
+                const aDist = matrix.rows[0].elements[aIndex].distance ? matrix.rows[0].elements[aIndex].distance.value : 0;
+                const bDist = matrix.rows[1].elements[aIndex].distance ? matrix.rows[1].elements[aIndex].distance.value : 0;
                 results.push({
                   address: address,
                   name: destLocationsChunks[mIndex][aIndex].name,
-                  distanceSum: matrix.rows[0].elements[aIndex].distance.value + matrix.rows[1].elements[aIndex].distance.value
+                  distanceSum: aDist + bDist
                 })
               })
             })

@@ -1,11 +1,11 @@
 <h2>Real estate agent finder</h2>
-<p>Enter 2 valid addresses to find the closest real estate agents between the addresses.</p>
+<p>Enter 2 valid addresses to find the closest real estate agents between the addresses. Google will do its best to match the addresses and find you a realtor.</p>
 <form [formGroup]="searchFormGroup" (ngSubmit)="onSearch(searchFormGroup)">
   <md-input-container>
-    <input mdInput formControlName="addressOne" type="text" placeholder="Address 1">
+    <input mdInput formControlName="addressOne" type="text" placeholder="Address 1" required>
   </md-input-container>
   <md-input-container>
-    <input mdInput formControlName="addressTwo" type="text" placeholder="Address 2">
+    <input mdInput formControlName="addressTwo" type="text" placeholder="Address 2" required>
   </md-input-container>
   <button md-button type="submit">Search</button>
 </form>
