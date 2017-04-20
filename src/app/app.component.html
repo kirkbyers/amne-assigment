@@ -1,9 +1,9 @@
 <form [formGroup]="searchFormGroup" (ngSubmit)="onSearch(searchFormGroup)">
-  <div>
-    <input formControlName="addressOne" type="text" placeholder="Address 1">
-  </div>
-  <div>
-    <input formControlName="addressTwo" type="text" placeholder="Address 2">
-  </div>
-  <button type="submit">Search</button>
+  <md-input-container>
+    <input mdInput formControlName="addressOne" type="text" placeholder="Address 1">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput formControlName="addressTwo" type="text" placeholder="Address 2">
+  </md-input-container>
+  <button md-button type="submit">Search</button>
 </form>
