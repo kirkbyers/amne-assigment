@@ -7,3 +7,6 @@
   </md-input-container>
   <button md-button type="submit">Search</button>
 </form>
+<div>
+  {{((progress$ | async) < 100) ? 'Searching for realators' : ''}}
+</div>
